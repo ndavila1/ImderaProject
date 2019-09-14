@@ -1,0 +1,113 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Apoyo a organizaciones
+                    comunitarias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="apoyoOrganizacionesComunitarias" (ngSubmit)="register()">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="barrio">Barrio: </label>
+                            <input formControlName="barrio" type="text" class="form-control" id="barrio"
+                                placeholder="Ingrese un barrio">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="presidente">Presidente: </label>
+                            <input formControlName="presidente" type="text" class="form-control" id="presidente"
+                                placeholder="Ingrese el representante del barrio">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="organizaciondeportiva">Organizacion Deportiva: </label>
+                            <input formControlName="organizaciondeportiva" type="text" class="form-control"
+                                id="organizaciondeportiva" placeholder="Ingrese la organizacion deportiva">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="apoyo">Apoyo: </label>
+                            <input formControlName="apoyo" type="text" class="form-control" id="apoyo"
+                                placeholder="Ingrese el apoyo">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="fecha">Fecha: </label>
+                            <input formControlName="fecha" type="date" class="form-control" id="fecha"
+                                placeholder="Ingrese la fecha">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="comunaId">Comuna: </label>
+                            <select formControlName="comuna" class="form-control" id="comunaId">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>vereda</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-4">
+                            <label for="ceroacinco">De 0 a 5: </label>
+                            <input formControlName="ceroacinco" type="number" class="form-control" id="ceroacinco"
+                                placeholder="N° personas">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="seisadoce">De 6 a 12: </label>
+                            <input formControlName="seisadoce" type="number" class="form-control" id="seisadoce"
+                                placeholder="N° personas">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="treceadiecisiete">De 13 a 17: </label>
+                            <input formControlName="treceadiecisiete" type="number" class="form-control"
+                                id="treceadiecisiete" placeholder="N° personas">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="dieciochoaventiocho">De 18 a 28: </label>
+                            <input formControlName="dieciochoaventiocho" type="number" class="form-control"
+                                id="dieciochoaventiocho" placeholder="N° personas">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="ventiochomas">De 28 a mas: </label>
+                            <input formControlName="ventiochomas" type="number" class="form-control" id="ventiochomas"
+                                placeholder="N° personas">
+                        </div>
+                    </div>
+                    <button type="submit" class="col-12 btn btn-primary"> Guardar </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>

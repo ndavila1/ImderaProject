@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ApoyoOrganizacionesComunitariasComponent } from './apoyo-organizaciones-comunitarias/apoyo-organizaciones-comunitarias.component';
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ApoyoOrganizacionesComunitariasComponent],
   imports: [
-    CommonModule
+    CommonModule, ReactiveFormsModule
   ]
 })
 export class DeporteSocialModule { }
