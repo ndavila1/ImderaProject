@@ -1,1 +1,106 @@
-<p>eventos works!</p>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de eventos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="evento" (ngSubmit)="register()">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="lugar">Lugar:</label>
+                            <input formControlName="lugar" type="text" class="form-control" id="lugar"
+                                placeholder="Ingrese un lugar">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="nombreOrganizacion">Nombre de la organizacion:</label>
+                            <input formControlName="organizacion" type="text" class="form-control"
+                                id="nombreOrganizacion" placeholder="Ingrese el nombre de la organizacion">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="fechaEvento">Fecha del evento:</label>
+                            <input formControlName="fecha" type="date" class="form-control" id="fechaEvento"
+                                placeholder="Ingrese la fecha del evento">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="comunaId">Comuna:</label>
+                            <select formControlName="comuna" formControlName="comuna" class="form-control"
+                                id="comunaId">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>Vereda</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-4">
+                            <label for="ceroACinco">0 a 5:</label>
+                            <input formControlName="ceroACinco" type="number" min="0" class="form-control" id="ceroACinco"
+                                placeholder="N° personas">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="seisADoce">6 a 12:</label>
+                            <input formControlName="seisADoce" type="number" min="0" class="form-control" id="seisADoce"
+                                placeholder="N° personas">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="treceADiesiciete">13 a 17:</label>
+                            <input formControlName="treceADiecisiete" type="number" min="0" class="form-control"
+                                id="treceADiesiciete" placeholder="N° personas">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="dieciochoAventoocho">18 a 28:</label>
+                            <input formControlName="dieciochoAVentiocho" type="number" min="0" class="form-control"
+                                id="dieciochoAventoocho" placeholder="N° personas">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="ventiochoAMas">28 o Mas:</label>
+                            <input formControlName="ventiochoAMas" type="number" min="0" class="form-control"
+                                id="ventiochoAMas" placeholder="N° personas">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="descripcion">Descripcion:</label>
+                            <textarea formControlName="descripcion" class="form-control"
+                                placeholder="Ingrese una descripcion" id="descripcion" rows="10"
+                                maxlength="500"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="col-12 btn btn-primary">Guardar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
