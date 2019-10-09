@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { EscenarioComponent } from './escenario/escenario.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [EscenarioComponent],
   imports: [
-    CommonModule
+    CommonModule,ReactiveFormsModule
   ]
 })
 export class MantenimientoModule { }

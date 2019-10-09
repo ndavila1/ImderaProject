@@ -1,0 +1,68 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Apoyos economicos
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="apoyosEconomicos" (ngSubmit)="register()">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="nombre">Nombre: </label>
+                            <input formControlName="nombre" type="text" class="form-control" id="nombre"
+                                placeholder="Ingrese un nombre">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="representante">Representante: </label>
+                            <input formControlName="representante" type="text" class="form-control" id="representante"
+                                placeholder="Ingrese el representante">
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="fecha">Fecha: </label>
+                            <input formControlName="fecha" type="date" class="form-control" id="fecha"
+                                placeholder="Ingrese la fecha">
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="valorapoyado">Valor: </label>
+                            <input formControlName="valorapoyado" type="number" class="form-control" id="valorapoyado"
+                                placeholder="Ingrese el valor apoyado">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="concepto">Concepto: </label>
+                            <textarea formControlName="concepto" class="form-control"
+                                placeholder="Ingrese el concepto" id="concepto" rows="10"
+                                maxlength="500"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="col-12 btn btn-primary"> Guardar </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+    </div>

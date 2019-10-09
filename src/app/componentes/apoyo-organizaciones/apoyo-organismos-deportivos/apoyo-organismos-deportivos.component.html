@@ -9,42 +9,44 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Apoyo a organizaciones
-                    comunitarias</h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Apoyo a organismos deportivos
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="apoyoOrganizacionesComunitarias" (ngSubmit)="register()">
+                <form [formGroup]="apoyoOrganismosDeportivos" (ngSubmit)="register()">
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="barrio">Barrio: </label>
-                            <input formControlName="barrio" type="text" class="form-control" id="barrio"
-                                placeholder="Ingrese un barrio">
+                            <label for="nombreOrganismo">Nombre del organismo: </label>
+                            <input formControlName="nombreOrganismo" type="text" class="form-control" id="nombreOrganismo"
+                                placeholder="Ingrese el nombre del organismo">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="presidente">Presidente: </label>
-                            <input formControlName="presidente" type="text" class="form-control" id="presidente"
-                                placeholder="Ingrese el representante del barrio">
+                            <label for="nombre">Nombre: </label>
+                            <input formControlName="nombre" type="text" class="form-control" id="nombre"
+                                placeholder="Ingrese del evento">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="organizaciondeportiva">Organizacion Deportiva: </label>
-                            <input formControlName="organizaciondeportiva" type="text" class="form-control"
-                                id="organizaciondeportiva" placeholder="Ingrese la organizacion deportiva">
+                            <label for="lugar">Lugar: </label>
+                            <input formControlName="lugar" type="text" class="form-control" id="lugar"
+                                placeholder="Ingrese el lugar">
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="apoyo">Apoyo: </label>
-                            <input formControlName="apoyo" type="text" class="form-control" id="apoyo"
-                                placeholder="Ingrese el apoyo">
+                            <label for="ciudad">Ciudad: </label>
+                            <input formControlName="ciudad" type="text" class="form-control" id="ciudad"
+                                placeholder="Ingrese la ciudad">
                         </div>
                     </div>
+                   
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="fecha">Fecha: </label>
@@ -52,27 +54,15 @@
                                 placeholder="Ingrese la fecha">
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="comunaId">Comuna: </label>
-                            <select formControlName="comuna" class="form-control" id="comunaId">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>vereda</option>
-                            </select>
-
+                            <label for="tipo">Tipo: </label>
+                            <input formControlName="tipo" type="text" class="form-control" id="tipo"
+                                placeholder="Ingrese el tipo">
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="form-group col-4">
                             <label for="ceroacinco">De 0 a 5: </label>

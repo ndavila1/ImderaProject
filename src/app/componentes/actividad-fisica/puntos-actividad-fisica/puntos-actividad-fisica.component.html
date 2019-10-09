@@ -9,42 +9,30 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Apoyo a organizaciones
-                    comunitarias</h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Puntos de actividad
+                    fisica
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="apoyoOrganizacionesComunitarias" (ngSubmit)="register()">
+                <form [formGroup]="puntosActividadFisica" (ngSubmit)="register()">
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="barrio">Barrio: </label>
-                            <input formControlName="barrio" type="text" class="form-control" id="barrio"
-                                placeholder="Ingrese un barrio">
+                            <label for="nombre">Nombre: </label>
+                            <input formControlName="nombre" type="text" class="form-control" id="nombre"
+                                placeholder="Ingrese un nombre">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="presidente">Presidente: </label>
-                            <input formControlName="presidente" type="text" class="form-control" id="presidente"
-                                placeholder="Ingrese el representante del barrio">
+                            <label for="lugar">Lugar: </label>
+                            <input formControlName="lugar" type="text" class="form-control" id="lugar"
+                                placeholder="Ingrese el lugar">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="organizaciondeportiva">Organizacion Deportiva: </label>
-                            <input formControlName="organizaciondeportiva" type="text" class="form-control"
-                                id="organizaciondeportiva" placeholder="Ingrese la organizacion deportiva">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="apoyo">Apoyo: </label>
-                            <input formControlName="apoyo" type="text" class="form-control" id="apoyo"
-                                placeholder="Ingrese el apoyo">
-                        </div>
-                    </div>
+                   
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="fecha">Fecha: </label>
