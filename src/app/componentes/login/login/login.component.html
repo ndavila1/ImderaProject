@@ -1,0 +1,28 @@
+<div>
+    <img [src]="imgBody" class="body-login" />
+    <div class="container text-center p-5">
+        <div class="row justify-content-center">
+            <div class="card border-primary p-3" style="max-width: 50rem;">
+                <img [src]="imgProfile" class="card-img-top" />
+                <div class="card-header">
+                    <h4>Bienvenidos</h4>
+                </div>
+                <div class="card-body text-primary">
+                    <form [formGroup]="login" (ngSubmit)="onLogin()">
+                        <div class="form-group">
+                            <input type="text" formControlName="mail" class="border-primary form-control" placeholder="Ingrese el correo">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="password" class="border-primary form-control"
+                                placeholder="ingrese la contraseña">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Ingresar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
