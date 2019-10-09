@@ -1,0 +1,97 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="usuario" (ngSubmit)="register()">
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="cedula">Cedula: </label>
+                            <input formControlName="cedula" type="number" class="form-control" id="cedula"
+                                placeholder="Ingrese la cedula">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="email">Email: </label>
+                            <input formControlName="email" type="email" class="form-control" id="email"
+                                placeholder="Ingrese el email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="contrasena">Contraseña: </label>
+                            <input formControlName="contrasena" type="password" class="form-control"
+                                id="contrasena" placeholder="Ingrese la contraseña">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="nombre">Nombre: </label>
+                            <input formControlName="nombre" type="text" class="form-control" id="nombre"
+                                placeholder="Ingrese el nombre">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="apellido">Apellido: </label>
+                            <input formControlName="apellido" type="text" class="form-control" id="apellido"
+                                placeholder="Ingrese el apellido">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="telefono">Telefono: </label>
+                            <input formControlName="telefono" type="number" class="form-control" id="telefono"
+                                placeholder="Ingrese el telefono">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="tipoUsuario">Tipo de Usuario: </label>
+                            <input formControlName="tipoUsuario" type="text" class="form-control" id="tipoUsuario"
+                                placeholder="Ingrese el tipo de usuario">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="programa">Programa: </label>
+                            <input formControlName="programa" type="text" class="form-control" id="programa"
+                                placeholder="Ingrese el programa">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="subprograma">Subprograma: </label>
+                            <input formControlName="subprograma" type="text" class="form-control" id="subprograma"
+                                placeholder="Ingrese el subprograma">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="col-12 btn btn-primary"> Guardar </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+    </div>
