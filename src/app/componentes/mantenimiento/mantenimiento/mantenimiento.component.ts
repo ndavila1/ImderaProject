@@ -1,49 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { EscenarioService } from "./../../../services/escenario/escenario.service";
+import { MantenimientoService } from "./../../../services/mantenimiento/mantenimiento.service";
 import Swal from "sweetalert2";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-  selector: 'app-escenario',
-  templateUrl: './escenario.component.html',
-  styleUrls: ['./escenario.component.css']
+  selector: 'app-mantenimiento',
+  templateUrl: './mantenimiento.component.html',
+  styleUrls: ['./mantenimiento.component.css']
 })
-export class EscenarioComponent implements OnInit {
+export class MantenimientoComponent implements OnInit {
 
   escenarios: any[] = [];
+  mantenimientos: any[] =[];
   accion: string;
   id: string;
 
   createFormGroup() {
     return new FormGroup({
-      nombreEscenario: new FormControl('', Validators.required),
-      tipoEscenario: new FormControl('', Validators.required),
-      comunaId: new FormControl('', Validators.required),
-      claseEscenario: new FormControl('', Validators.required)
+      fecha: new FormControl('', Validators.required),
+      actividad: new FormControl('', Validators.required)
     })
   }
 
-  escenarioForm: FormGroup;
+  mantenimientoForm: FormGroup;
 
-  constructor(private servicio: EscenarioService, private modalService: NgbModal) {
-    this.escenarioForm = this.createFormGroup();
+  constructor(private servicio: EscenarioService, private modalService: NgbModal, private mantServicio:MantenimientoService) { 
+    this.mantenimientoForm = this.createFormGroup();
     this.accion = 'Registrar';
     this.id='';
   }
 
   ngOnInit() {
-    this.listar();
   }
 
   onResetForm() {
-    this.escenarioForm.reset();
+    this.mantenimientoForm.reset();
   }
+  /**
   onSaveForm() {
-    if (this.escenarioForm.valid) {
+    if (this.mantenimientoForm.valid) {
       if (this.accion == 'Registrar') {
-        this.servicio.create(this.escenarioForm.value);
+        this.mantServicio.create(this.mantenimientoForm.value,escenario.id);
       } else {
         this.servicio.update(this.id,this.escenarioForm.value);
       }
@@ -62,12 +62,12 @@ export class EscenarioComponent implements OnInit {
       })
     }
   }
-
+**/
   open(content, escenario) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result;
     if (escenario != undefined) {
       this.accion = 'Editar';
-      this.escenarioForm.patchValue(escenario);
+      this.mantenimientoForm.patchValue(escenario);
       this.id=escenario.id;
     } else {
       this.id='';
@@ -76,15 +76,5 @@ export class EscenarioComponent implements OnInit {
   }
 
 
-
-  listar(): void {
-    this.servicio.listar().subscribe(data => {
-      this.escenarios = data.map(elemento => {
-        return {
-          ...elemento as any
-        }
-      });
-    });
-  }
 
 }

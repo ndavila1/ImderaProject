@@ -6,6 +6,7 @@ import { LoginComponent } from "./componentes/login/login/login.component";
 import { PuntosActividadFisicaComponent } from './componentes/actividad-fisica/puntos-actividad-fisica/puntos-actividad-fisica.component';
 import { DeporteComponent } from './componentes/deporte-escolar/deporte/deporte.component';
 import { EscenarioComponent } from './componentes/mantenimiento/escenario/escenario.component';
+import { MantenimientoComponent } from './componentes/mantenimiento/mantenimiento/mantenimiento.component';
 import { EventosRecreandoComponent } from './componentes/recreando-comunidad/eventos-recreando/eventos-recreando.component';
 import { ApoyoOrganismosDeportivosComponent } from './componentes/apoyo-organizaciones/apoyo-organismos-deportivos/apoyo-organismos-deportivos.component';
 import { ApoyosEconomicosComponent } from './componentes/apoyo-organizaciones/apoyos-economicos/apoyos-economicos.component';
@@ -16,7 +17,8 @@ import { PersonaComponent } from './componentes/estaticas/persona/persona.compon
 
 const routes: Routes = [
   {path:'',component: LoginComponent},
-  {path:'eventos',component: EventosComponent},
+  {path:'eventos',component: EventosComponent},  
+  {path:'mantenimiento',component: MantenimientoComponent},
   {path:'apoyo-organizaciones-comunitarias',component: ApoyoOrganizacionesComunitariasComponent},
   {path:'puntos-actividad-fisica',component: PuntosActividadFisicaComponent},
   {path:'deporte',component: DeporteComponent},
