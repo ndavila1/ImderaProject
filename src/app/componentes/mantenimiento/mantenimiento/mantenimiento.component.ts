@@ -14,39 +14,49 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class MantenimientoComponent implements OnInit {
 
   escenarios: any[] = [];
-  mantenimientos: any[] =[];
+  mantenimientos: any[] = [];
   accion: string;
   id: string;
+
+
+  mantenimientoForm: FormGroup;
 
   createFormGroup() {
     return new FormGroup({
       fecha: new FormControl('', Validators.required),
-      actividad: new FormControl('', Validators.required)
+      actividad: new FormControl('', Validators.required),
+      escenarioForanea: new FormControl('', Validators.required)
     })
   }
 
-  mantenimientoForm: FormGroup;
-
-  constructor(private servicio: EscenarioService, private modalService: NgbModal, private mantServicio:MantenimientoService) { 
+  constructor(private servicio: EscenarioService, private modalService: NgbModal, private mantServicio: MantenimientoService) {
     this.mantenimientoForm = this.createFormGroup();
     this.accion = 'Registrar';
-    this.id='';
+    this.id = '';
   }
 
   ngOnInit() {
+    this.listarEscenarios();
+    this.listar();
+    
   }
 
   onResetForm() {
     this.mantenimientoForm.reset();
   }
-  /**
+
   onSaveForm() {
+
     if (this.mantenimientoForm.valid) {
       if (this.accion == 'Registrar') {
-        this.mantServicio.create(this.mantenimientoForm.value,escenario.id);
-      } else {
-        this.servicio.update(this.id,this.escenarioForm.value);
-      }
+        this.mantenimientoForm.addControl('getFiltro',new FormControl('', Validators.required));
+        this.mantenimientoForm.get('getFiltro').setValue(1570838400000);
+        var resultEscenario = this.escenarios.find(esce => esce.id == this.mantenimientoForm.value.escenarioForanea);
+        var padre = this.mantenimientoForm.value.escenarioForanea;
+        delete resultEscenario.id;
+        resultEscenario.mantenimientos.push(this.mantenimientoForm.value);
+        this.mantServicio.create(resultEscenario,padre);
+      } 
       this.onResetForm();
       Swal.fire({
         type: 'success',
@@ -61,20 +71,37 @@ export class MantenimientoComponent implements OnInit {
         text: 'Por favor llena todos los campos del formulario'
       })
     }
+
   }
-**/
-  open(content, escenario) {
+  open(content, mantenimiento) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result;
-    if (escenario != undefined) {
+    if (mantenimiento != undefined) {
       this.accion = 'Editar';
-      this.mantenimientoForm.patchValue(escenario);
-      this.id=escenario.id;
+      this.mantenimientoForm.patchValue(mantenimiento);
+      this.id = mantenimiento.id;
     } else {
-      this.id='';
+      this.id = '';
       this.onResetForm();
     };
   }
 
+  listarEscenarios(): void {
+    this.servicio.listar().subscribe(data => {
+      this.escenarios = data.map(elemento => {
+        return {
+          ...elemento as any
+        }
+      });
+    });
+  }
 
-
+  listar(): void {
+    this.mantServicio.cargarMensajes().subscribe(data => {
+      this.mantenimientos = data.map(elemento => {
+        return {
+          ...elemento as any
+        }
+      });
+    });
+  }
 }

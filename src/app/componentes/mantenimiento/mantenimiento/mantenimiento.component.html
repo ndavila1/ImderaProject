@@ -2,7 +2,7 @@
 <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Registrar nuevo mantenimiento</button>
 
 <hr>
-<!---<div class="conteiner" data-spy="scroll">
+<div class="conteiner" data-spy="scroll">
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
@@ -13,22 +13,21 @@
         <th scope="col">Visualizar</th>   
       </tr>
     </thead>
-    <tbody *ngFor="let mantenimineto of mantenimientos; let i = index">
-      <tr class="table-Primary">
+    <tbody *ngFor="let mantenimineto of mantenimientos">
+      <tr class="table-Primary" *ngFor="let item of mantenimineto.mantenimientos; let i = index">
         <th scope="row">{{i+1}}</th>
-        <td>{{escenario.nombreEscenario}}</td>
-        <td>{{escenario.tipoEscenario}}</td>
-        <td>{{escenario.comunaId}}</td>
-        <td>{{escenario.claseEscenario}}</td>
+        <td>{{item.fecha}}</td>
+        <td>{{mantenimineto.nombreEscenario}}</td>
+        <td>{{item.actividad}}</td>
         <td>
-            <button class="btn btn-outline-info"  (click)="open(content,escenario)"> View
+            <button class="btn btn-outline-info" > View
           </button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
--->
+
 
 <ng-template #content let-modal>
   <div class="modal-header">
@@ -48,29 +47,24 @@
       </div>
       <div class="row">
         <div class="form-group col-12">
-          <label for="comunaId">Comuna</label>
-          <select formControlName="comunaId" class="form-control" id="comunaId" required>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-            <option>Vereda</option>
+          <label for="mantenimientoActividad">Actividad</label>
+          <textarea formControlName="actividad" id="mantenimientoActividad" class="form-control"
+            placeholder="Ingrese la Actividad" required></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="escenarioLabel">Escenarios</label>
+          <select formControlName="escenarioForanea" class="form-control" id="escenarioLabel">
+            <option></option>
+            <option *ngFor="let escenario of escenarios" value="{{escenario.id}}">{{escenario.nombreEscenario}}</option>
           </select>
         </div>
       </div>
-      <button id="botonAceptacion" type="submit" [disabled]="!escenarioForm.valid" class="col-md-3  col-12 btn btn-primary">{{accion}}</button>
+      <button id="botonAceptacion" type="submit" class="col-md-3  col-12 btn btn-primary" [disabled]="!mantenimientoForm.valid">{{accion}}</button>
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancelar</button>
   </div>
 </ng-template>
-
