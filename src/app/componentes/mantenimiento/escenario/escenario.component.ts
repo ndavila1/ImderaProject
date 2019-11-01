@@ -43,8 +43,6 @@ export class EscenarioComponent implements OnInit {
   onSaveForm() {
     if (this.escenarioForm.valid) {
       if (this.accion == 'Registrar') {
-        this.escenarioForm.addControl('mantenimientos',new FormControl('', Validators.required));
-        this.escenarioForm.get('mantenimientos').setValue([]);
         this.servicio.create(this.escenarioForm.value);
       } else {
         this.servicio.update(this.id,this.escenarioForm.value);

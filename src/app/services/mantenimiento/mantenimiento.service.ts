@@ -9,27 +9,25 @@ import { map } from 'rxjs/operators';
 export class MantenimientoService {
 
   private objetos: AngularFirestoreCollection<any>;
-  mantenimientoFiltro: any[] = [];
+  private mantenimientoFiltro: AngularFirestoreCollection<any>;
   private orders: Observable<any[]>;
-  public x:number;
   
-  private itemsFiltros: AngularFirestoreCollection;
-
   constructor(private afs: AngularFirestore) { 
-    this.objetos = this.afs.collection<any>('escenario');
-    this.orders = this.objetos.snapshotChanges().pipe(map(
+    this.objetos = this.afs.collection<any>('mantenimiento');
+
+  }
+
+  public listar(mes:number,anio:number): Observable<any[]> {
+    this.mantenimientoFiltro = this.afs.collection<any>('mantenimiento', ref => ref.where('filtroMes','==',mes).where('filtroAnio','==',anio));
+    this.orders = this.mantenimientoFiltro.snapshotChanges().pipe(map(
       actions => actions.map(a => {
         const data = a.payload.doc.data() as any;
         const id = a.payload.doc.id;
         return { id, ...data };
       })
     ));
-  }
-
-  public listar(): Observable<any[]> {
     return this.orders;
   }
-
   public buscar(id: string): Observable<any> {
     return this.objetos.doc(id).snapshotChanges();
   }
@@ -42,11 +40,12 @@ export class MantenimientoService {
     return this.objetos.doc(id).delete();
   }
 
-  public create(objeto: any,padre: any): Promise<any> {
-    return this.objetos.doc(padre).set(objeto);
+  public create(objeto: any) {
+    return this.objetos.add(objeto);
   }
-  cargarMensajes():Observable<any[]> {
-
+/**
+  public cargarMensajes():Observable<any[]> {
+ 
     this.itemsFiltros = this.afs.collection('escenario' , ref => ref.where('mantenimientos.getFiltro','==',1570838400000));
     var itemsMantenimiento;
     return this.itemsFiltros.valueChanges().pipe
@@ -68,5 +67,5 @@ export class MantenimientoService {
         return itemsMantenimiento;
       }))
   }
-   
+ */  
 }

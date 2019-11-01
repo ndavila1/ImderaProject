@@ -4,6 +4,7 @@ import { MantenimientoService } from "./../../../services/mantenimiento/mantenim
 import Swal from "sweetalert2";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -25,7 +26,9 @@ export class MantenimientoComponent implements OnInit {
     return new FormGroup({
       fecha: new FormControl('', Validators.required),
       actividad: new FormControl('', Validators.required),
-      escenarioForanea: new FormControl('', Validators.required)
+      escenarioForanea: new FormControl('', Validators.required),
+      filtroMes: new FormControl(''),
+      filtroAnio: new FormControl('')
     })
   }
 
@@ -37,9 +40,23 @@ export class MantenimientoComponent implements OnInit {
 
   ngOnInit() {
     this.listarEscenarios();
-    this.listar();
-    
+    var mes = new Date().getMonth() + 1;
+    this.listar(mes, new Date().getFullYear());
+
   }
+/**
+  ngDoCheck() {
+    var n = [];
+    this.mantenimientos.map(x=>{
+      let a = this.escenarios.filter(escenario=> escenario.id === x.escenarioForanea)
+      n.push({
+        'mantenimiento':x,
+        'nombreEscenario':a[0].nombreEscenario
+      })
+
+    });
+    this.mantenimientos=n
+  } */
 
   onResetForm() {
     this.mantenimientoForm.reset();
@@ -49,14 +66,12 @@ export class MantenimientoComponent implements OnInit {
 
     if (this.mantenimientoForm.valid) {
       if (this.accion == 'Registrar') {
-        this.mantenimientoForm.addControl('getFiltro',new FormControl('', Validators.required));
-        this.mantenimientoForm.get('getFiltro').setValue(1570838400000);
-        var resultEscenario = this.escenarios.find(esce => esce.id == this.mantenimientoForm.value.escenarioForanea);
-        var padre = this.mantenimientoForm.value.escenarioForanea;
-        delete resultEscenario.id;
-        resultEscenario.mantenimientos.push(this.mantenimientoForm.value);
-        this.mantServicio.create(resultEscenario,padre);
-      } 
+        var fecha = new Date(this.mantenimientoForm.value.fecha);
+        fecha.setHours(fecha.getHours() + 24);
+        this.mantenimientoForm.get('filtroMes').setValue(fecha.getMonth() + 1);
+        this.mantenimientoForm.get('filtroAnio').setValue(fecha.getFullYear());
+        this.mantServicio.create(this.mantenimientoForm.value);
+      }
       this.onResetForm();
       Swal.fire({
         type: 'success',
@@ -74,6 +89,7 @@ export class MantenimientoComponent implements OnInit {
 
   }
   open(content, mantenimiento) {
+    console.log('www');
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result;
     if (mantenimiento != undefined) {
       this.accion = 'Editar';
@@ -95,13 +111,20 @@ export class MantenimientoComponent implements OnInit {
     });
   }
 
-  listar(): void {
-    this.mantServicio.cargarMensajes().subscribe(data => {
+  listar(mes: number, anio: number) {
+
+    console.log('as')
+    this.mantServicio.listar(mes, anio).subscribe(data => {
       this.mantenimientos = data.map(elemento => {
-        return {
-          ...elemento as any
-        }
+        let a = this.escenarios.find(escenario=> escenario.id === elemento.escenarioForanea);
+         var n ={
+          'mantenimiento':elemento,
+          'nombreEscenario':a.nombreEscenario
+        };
+        return n as any
       });
     });
   }
+
+
 }

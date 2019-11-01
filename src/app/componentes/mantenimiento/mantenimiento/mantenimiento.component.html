@@ -13,14 +13,14 @@
         <th scope="col">Visualizar</th>   
       </tr>
     </thead>
-    <tbody *ngFor="let mantenimineto of mantenimientos">
-      <tr class="table-Primary" *ngFor="let item of mantenimineto.mantenimientos; let i = index">
+    <tbody *ngFor="let mantenimineto of mantenimientos; let i = index">
+      <tr class="table-Primary">
         <th scope="row">{{i+1}}</th>
-        <td>{{item.fecha}}</td>
+        <td>{{mantenimineto.mantenimiento.fecha}}</td>
         <td>{{mantenimineto.nombreEscenario}}</td>
-        <td>{{item.actividad}}</td>
+        <td>{{mantenimineto.mantenimiento.actividad}}</td>
         <td>
-            <button class="btn btn-outline-info" > View
+            <button class="btn btn-outline-info" (click)="open(content,mantenimineto.mantenimiento)"> Visualizar
           </button>
         </td>
       </tr>
