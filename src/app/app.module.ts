@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { StaticPageModule } from './static-page/static-page.module';
+import { PaginasErrorModule } from './paginas-error/paginaserror.module';
 
 //Modulos de la aplicacion
 import { ActividadFisicaModule } from './componentes/actividad-fisica/actividad-fisica.module';
@@ -44,6 +46,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    StaticPageModule,
+    PaginasErrorModule,
   ],
   providers: [AngularFirestore,AngularFireAuth],
   bootstrap: [AppComponent]

@@ -1,0 +1,28 @@
+<div class="d-flex" id="wrapper" [ngClass]="{'toggled': toggled}">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Menu</div>
+        <div class="list-group list-group-flush" *ngFor="let link of links">
+            <a [routerLink]="[''+link.route]" class="list-group-item list-group-item-action bg-light">{{link.title}}</a>
+        </div>
+         <div class="dropdown show" >
+                <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" >
+                        &nbsp; Programas
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                  <a [routerLink]="" class="dropdown-item" href="#">Mantenimiento</a>
+                  <a [routerLink]="" class="dropdown-item" href="#">Deporte Escolar</a>
+                  <a [routerLink]="" class="dropdown-item" href="#">Recreando Comunidad</a>
+                  <a [routerLink]="" class="dropdown-item" href="#">Actividad Fisica y Habitos</a>
+                  <a [routerLink]="" class="dropdown-item" href="#">Deporte Social Comunitario</a>
+                  <a [routerLink]="" class="dropdown-item" href="#">Apoyo a Org Comunitarias</a>
+                </div>
+              </div>
+        
+    </div>
+    
+            
+       
+    <button (click)="modtrarOcultarMenu()"><span class="navbar-toggler-icon"></span></button>
+</div>

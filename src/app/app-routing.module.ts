@@ -11,6 +11,9 @@ import { ApoyoOrganismosDeportivosComponent } from './componentes/apoyo-organiza
 import { ApoyosEconomicosComponent } from './componentes/apoyo-organizaciones/apoyos-economicos/apoyos-economicos.component';
 import { UsuarioComponent } from './componentes/estaticas/usuario/usuario.component';
 import { PersonaComponent } from './componentes/estaticas/persona/persona.component';
+import { Error403ForbiddenComponent } from './paginas-error/error403-forbidden/error403-forbidden.component';
+import { Error404NotFoundComponent } from './paginas-error/error404-not-found/error404-not-found.component';
+import { Error500InternalServerComponent } from './paginas-error/error500-internal-server/error500-internal-server.component';
 
 
 
@@ -25,7 +28,11 @@ const routes: Routes = [
   {path:'apoyo-organismos-deportivos',component: ApoyoOrganismosDeportivosComponent},
   {path:'apoyos-economicos',component: ApoyosEconomicosComponent},
   {path:'usuario',component: UsuarioComponent},
-  {path:'persona',component: PersonaComponent}
+  {path:'persona',component: PersonaComponent},
+  { path: '**', component: Error404NotFoundComponent},
+  { path: 'internal_server', component: Error500InternalServerComponent},
+  { path: 'forbidden', component: Error403ForbiddenComponent},
+  
 ];
 
 @NgModule({
