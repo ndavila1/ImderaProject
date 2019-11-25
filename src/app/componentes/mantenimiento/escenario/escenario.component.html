@@ -1,79 +1,97 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
-    Launch demo modal
-</button>
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Registrar nuevo escenario</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Formulario de Escenario
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="escenario" (ngSubmit)="register()">
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="nombre">Nombre: </label>
-                            <input formControlName="nombre" type="text" class="form-control" id="nombre"
-                                placeholder="Ingrese un nombre">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="tipo">Tipo: </label>
-                            <input formControlName="tipo" type="text" class="form-control" id="tipo"
-                                placeholder="Ingrese el tipo">
-                        </div>
-                    </div>
-                   
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="comunaId">Comuna: </label>
-                            <select formControlName="comuna" class="form-control" id="comunaId">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>vereda</option>
-                            </select>
+<hr>
+<div class="conteiner" data-spy="scroll">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Numero</th>
+        <th scope="col">Nombre Escenario</th>
+        <th scope="col">Tipo Escenario</th>
+        <th scope="col">Comuna</th>
+        <th scope="col">Clase escenario</th>
+        <th scope="col">Visualizar</th>   
+      </tr>
+    </thead>
+    <tbody *ngFor="let escenario of escenarios; let i = index">
+      <tr class="table-Primary">
+        <th scope="row">{{i+1}}</th>
+        <td>{{escenario.nombreEscenario}}</td>
+        <td>{{escenario.tipoEscenario}}</td>
+        <td>{{escenario.comunaId}}</td>
+        <td>{{escenario.claseEscenario}}</td>
+        <td>
+            <button class="btn btn-outline-info"  (click)="open(content,escenario)"> View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="clase">Clase: </label>
-                            <input formControlName="clase" type="text" class="form-control" id="clase"
-                                placeholder="Ingrese la clase">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="estado">Estado: </label>
-                            <input formControlName="estado" type="text" class="form-control"
-                                id="estado" placeholder="Ingrese el estado">
-                        </div>
-                    </div>
-                    <button type="submit" class="col-12 btn btn-primary"> Guardar </button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Formulario de escenario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="escenarioForm" (ngSubmit)="onSaveForm()">
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="nombreEscenario">Nombre Escenario</label>
+          <input formControlName="nombreEscenario" id="nombreEscenario" type="text" class="form-control"
+            placeholder="Ingrese el nombre del escenario" required>
         </div>
-    </div>
-    </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="tipoEscenario">Tipo de Escenario</label>
+          <select formControlName="tipoEscenario" class="form-control" id="tipoEscenario">
+            <option>Estadio</option>
+            <option>Coliseo</option>
+            <option>Cancha</option>
+            <option>Polideportivo</option>
+            <option>Otros</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="comunaId">Comuna</label>
+          <select formControlName="comunaId" class="form-control" id="comunaId" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>Vereda</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="claseEscenario">Clase Escenario</label>
+          <select formControlName="claseEscenario" class="form-control" id="claseEscenario">
+            <option>Escenario Mayor</option>
+            <option>Escenario Menor</option>
+          </select>
+        </div>
+      </div>
+      <button id="botonAceptacion" type="submit" [disabled]="!escenarioForm.valid" class="col-md-3  col-12 btn btn-primary">{{accion}}</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancelar</button>
+  </div>
+</ng-template>
+

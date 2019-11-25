@@ -1,0 +1,70 @@
+<!-- Button trigger modal -->
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Registrar nuevo mantenimiento</button>
+
+<hr>
+<div class="conteiner" data-spy="scroll">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Numero</th>
+        <th scope="col">Fecha del mantenimineto</th>
+        <th scope="col">Nombre del escenario</th>
+        <th scope="col">Actividad</th>
+        <th scope="col">Visualizar</th>   
+      </tr>
+    </thead>
+    <tbody *ngFor="let mantenimineto of mantenimientos; let i = index">
+      <tr class="table-Primary">
+        <th scope="row">{{i+1}}</th>
+        <td>{{mantenimineto.mantenimiento.fecha}}</td>
+        <td>{{mantenimineto.nombreEscenario}}</td>
+        <td>{{mantenimineto.mantenimiento.actividad}}</td>
+        <td>
+            <button class="btn btn-outline-info" (click)="open(content,mantenimineto.mantenimiento)"> Visualizar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Formulario de mantenimiento</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="mantenimientoForm" (ngSubmit)="onSaveForm()">
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="mantenimientoFecha">Fecha Mantenimiento</label>
+          <input formControlName="fecha" id="mantenimientoFecha" type="date" class="form-control"
+            placeholder="Ingrese la fecha del mantenimiento" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="mantenimientoActividad">Actividad</label>
+          <textarea formControlName="actividad" id="mantenimientoActividad" class="form-control"
+            placeholder="Ingrese la Actividad" required></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="escenarioLabel">Escenarios</label>
+          <select formControlName="escenarioForanea" class="form-control" id="escenarioLabel">
+            <option></option>
+            <option *ngFor="let escenario of escenarios" value="{{escenario.id}}">{{escenario.nombreEscenario}}</option>
+          </select>
+        </div>
+      </div>
+      <button id="botonAceptacion" type="submit" class="col-md-3  col-12 btn btn-primary" [disabled]="!mantenimientoForm.valid">{{accion}}</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancelar</button>
+  </div>
+</ng-template>

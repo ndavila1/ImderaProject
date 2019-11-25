@@ -151,19 +151,6 @@ doc.save('Reporte.pdf');
   
 }
 
-generatePDF(){
-  html2canvas(document.querySelector('content'), {scale: 1}).then(canvas => {
-    const orientation = (screen.orientation || {}).type;
-    let pdf;
-    if( orientation.indexOf('portrait') >= 0) {
-        pdf = new jsPDF('p', 'pt', [canvas.width,canvas.height]);
-    }else {
-        pdf = new jsPDF('l', 'pt', [canvas.width,canvas.height]);
-    }
-    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, canvas.width,canvas.height);
-    pdf.save('Reporte.pdf'); //-> download pdf file
-});
-}
 
 
 }
